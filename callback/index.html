@@ -1,6 +1,19 @@
 <!doctype html>
 <html lang="en">
     <head>
+        <script
+            async
+            src="https://www.googletagmanager.com/gtag/js?id=G-JSJJLPFLJE"
+        ></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag() {
+                dataLayer.push(arguments);
+            }
+            gtag("js", new Date());
+
+            gtag("config", "G-JSJJLPFLJE");
+        </script>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="robots" content="noindex, nofollow, noarchive, nosnippet" />
@@ -12,6 +25,14 @@
     <body class="flash">
         <span>Completing authentication&hellip;</span>
         <script>
+            // TODO: remove this page once Let's Encrypt is in place on aggregators.abreo.org.
+            // With a LE cert, register https://aggregators.abreo.org/plaid/oauth-return
+            // directly in the Plaid dashboard and skip this hop. Steps:
+            //   1. Add https://aggregators.abreo.org/plaid/oauth-return to Plaid dashboard allowed redirect URIs
+            //   2. Revert _redirect_uri() in aggregators/src/aggregators/api/oauth_routes.py
+            //      to build from request.base_url (remove the hardcoded link.abreo.org/callback)
+            //   3. Remove https://link.abreo.org/callback from Plaid dashboard allowed redirect URIs
+            //   4. Delete this page
             const params = window.location.search;
             window.location.href = `https://aggregators.abreo.org/plaid/oauth-return${params}`;
         </script>
